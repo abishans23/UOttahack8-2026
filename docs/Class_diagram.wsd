@@ -1,5 +1,5 @@
 @startuml 
- title Culinaria
+ title Recipe Social
 
  class main{
     +test:int
