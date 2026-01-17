@@ -2,15 +2,15 @@
 skinparam style strictuml
 skinparam PackageBackgroundColor #f9f9f9
 
-package "App Orchestrator (app.py)" {
-  class FlaskApp << (C, #FFAAAA) >> {
+
+
+class FlaskApp << (C, #FFAAAA) >> {
     + route_login()
     + route_recommend()
     + route_cookbook()
     --
     * Manages Session (24h)
     * Integrates Sentry
-  }
 }
 
 package "Data Models (ORM Layer)" {
@@ -36,21 +36,17 @@ package "Data Models (ORM Layer)" {
   }
 }
 
-package "Sub-Services (Logic Layer)" {
-  class MathService {
+package "Recommendation_data" {
+  class Recommendations {
     + calculate_t_distribution(data: list)
     + run_graph_recommendation(user_id)
     --
     * Uses SciPy & NetworkX
   }
 
-  class AuthService {
-    + verify_password_strength(password: str)
-    + check_edit_permissions(user, recipe)
-    --
-    * Uses Regex Patterns
-  }
+}
 
+package "APIs"{
   class ExternalApiService {
     + autocomplete_ingredient(query: str)
     --
@@ -63,8 +59,7 @@ User "1" -- "1" Cookbook : owns
 Cookbook "1" -- "*" Recipe : contains
 Recipe "*" -- "1" User : created_by
 
-FlaskApp ..> AuthService : delegates auth
-FlaskApp ..> MathService : requests math logic
+FlaskApp ..> Recommendations : requests math logic
 FlaskApp ..> ExternalApiService : fetches ingredients
 FlaskApp ..> User : queries data
 
