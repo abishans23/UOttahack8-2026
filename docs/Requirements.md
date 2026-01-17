@@ -46,3 +46,5 @@
 .The system must kill a user's session after 24 hours of inactivity
 
 .The system must verify password strength and forbid characters such as [< > " ' / \ ; : | * ? ` & % $ # @ ! = + ( ) [ ] { } ^ ~] using a regex
+
+.The system must use "Sentry" for bug detection and reports
