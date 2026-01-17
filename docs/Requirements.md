@@ -53,6 +53,9 @@
 ***TECH STACK***
 ====================
 .HTML+Bootstrap(optional)+Tailwinds CSS Play CDN(optional)
+
 .CSS
+
 .Python Flask
+
 .Flask-SQLAchemy(Database ORM)
