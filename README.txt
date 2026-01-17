@@ -1,3 +1,3 @@
 UOttahack8-2026
 
-Aiden: check git work
+Aiden: check 'aiden branch work'
