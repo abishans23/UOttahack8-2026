@@ -1,8 +1,71 @@
-@startuml 
- title Recipe Social
+@startuml
+skinparam style strictuml
+skinparam PackageBackgroundColor #f9f9f9
 
- class main{
-    +test:int
- }
+package "App Orchestrator (app.py)" {
+  class FlaskApp << (C, #FFAAAA) >> {
+    + route_login()
+    + route_recommend()
+    + route_cookbook()
+    --
+    * Manages Session (24h)
+    * Integrates Sentry
+  }
+}
 
-@enduml 
+package "Data Models (ORM Layer)" {
+  class User {
+    + id: int
+    + username: str
+    + password_hash: str
+    + location: str
+    + role: Enum
+  }
+
+  class Cookbook {
+    + id: int
+    + user_id: int
+  }
+
+  class Recipe {
+    + id: int
+    + title: str
+    + ingredients: text
+    + creator_id: int
+    + like_count: int
+  }
+}
+
+package "Sub-Services (Logic Layer)" {
+  class MathService {
+    + calculate_t_distribution(data: list)
+    + run_graph_recommendation(user_id)
+    --
+    * Uses SciPy & NetworkX
+  }
+
+  class AuthService {
+    + verify_password_strength(password: str)
+    + check_edit_permissions(user, recipe)
+    --
+    * Uses Regex Patterns
+  }
+
+  class ExternalApiService {
+    + autocomplete_ingredient(query: str)
+    --
+    * Uses Spoonacular/AI API
+  }
+}
+
+' Relationships
+User "1" -- "1" Cookbook : owns
+Cookbook "1" -- "*" Recipe : contains
+Recipe "*" -- "1" User : created_by
+
+FlaskApp ..> AuthService : delegates auth
+FlaskApp ..> MathService : requests math logic
+FlaskApp ..> ExternalApiService : fetches ingredients
+FlaskApp ..> User : queries data
+
+@enduml
