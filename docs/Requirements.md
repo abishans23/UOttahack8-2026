@@ -48,3 +48,11 @@
 .The system must verify password strength and forbid characters such as [< > " ' / \ ; : | * ? ` & % $ # @ ! = + ( ) [ ] { } ^ ~] using a regex
 
 .The system must use "Sentry" for bug detection and reports
+
+
+***TECH STACK***
+====================
+.HTML+Bootstrap(optional)+Tailwinds CSS Play CDN(optional)
+.CSS
+.Python Flask
+.Flask-SQLAchemy(Database ORM)
