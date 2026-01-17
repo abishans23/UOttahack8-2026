@@ -1,0 +1,54 @@
+@startuml
+skinparam ActivityBackgroundColor #FEFECE
+skinparam ActivityBorderColor #A80036
+skinparam ArrowColor #333333
+
+start
+
+:User Registration;
+partition "AuthService (Regex)" {
+    if (Password has forbidden chars\n[< > " ' / \ ; : | * ? ` & % $ # @ ! = + ( ) [ ] { } ^ ~]) then (Yes)
+        :Show Security Error;
+        stop
+    else (No)
+        :Create Account & Role;
+        :Auto-generate single Cookbook;
+    endif
+}
+
+:Login (Starts 24h Session);
+
+fork
+    :Search Ingredients;
+    partition "ExternalAPI (Autocomplete)" {
+        :Fetch suggestions from Spoonacular/AI;
+        :User provides ingredients;
+    }
+    :Create/Update Recipe;
+    note right: Users can only edit\ntheir own recipes.
+fork again
+    :Request Recommendations;
+    partition "MathService (Algorithms)" {
+        :Run Graphing Algorithm;
+        note left: Finds connections\nbetween users/recipes
+        :Apply T-Distribution;
+        note left: Filters by popularity\nconfidence
+        if (Request Type?) then (Local)
+            :Filter by Location;
+        else (Celebrity)
+            :Filter by Celebrity Role;
+        endif
+    }
+end fork
+
+:View Filtered Cookbook;
+
+if (Inactivity > 24 hours?) then (Yes)
+    :Kill Session;
+    stop
+else (No)
+    goto fork
+endif
+
+stop
+@enduml
