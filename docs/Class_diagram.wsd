@@ -1,0 +1,8 @@
+@startuml 
+ title Culinaria
+
+ class main{
+    +test:int
+ }
+
+@enduml 
