@@ -18,7 +18,13 @@
 
 .User must have an account
 
+.User must be able to change his password
+
 .User must be able to register as a celebrity,regular user or celebrity chef
+
+.User must be able to create only one cookbook
+
+.User can not edit recipes that they didn't create
 
 ***SYSTEM REQUIREMENTS***
 =======================
@@ -36,3 +42,7 @@
 .The system must be able to recommend recipes from another user's cookbook based on location
 
 .The system must be able to recommend a recipe from any celebrity
+
+.The system must kill a user's session after 24 hours of inactivity
+
+.The system must verify password strength and forbid characters such as [< > " ' / \ ; : | * ? ` & % $ # @ ! = + ( ) [ ] { } ^ ~] using a regex
