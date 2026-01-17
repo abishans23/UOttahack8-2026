@@ -8,17 +8,31 @@
 
 .User must be able to store a cookbook
 
+.User must be able to update his cookbook
+
+.User can look at other people's cookbooks in his area
+
+.Users can look at any celebrities cookbooks even if geographically far
+
 .User must be able to login
 
 .User must have an account
 
-.User must be able to register as a celebrity or regular user
+.User must be able to register as a celebrity,regular user or celebrity chef
 
 ***SYSTEM REQUIREMENTS***
 =======================
 
-.The system must store every recipe information
+.The system must store every recipe's information
+
+.The system must store a user's  "Username", "Password" and "Location"
 
 .The system must use either an AI or an API or both
 
-.The system must use Graphing algorithms and the T distribution+any other relevant math tool
+.The system must use Graphing algorithms and the T distribution+any other relevant mathematical formula
+
+.The system autocompletes a user's ingredient search using an API
+
+.The system must be able to recommend recipes from another user's cookbook based on location
+
+.The system must be able to recommend a recipe from any celebrity
